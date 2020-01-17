@@ -1,0 +1,24 @@
+<div class="content">
+  <button ng-click="order = 'name' ">Order by name</button>
+  <button ng-click="order = 'category' ">Order by category</button>
+  <input type="text" ng-model="search" placeholder="Busca una película"/>
+  <ul>
+    <li ng-repeat="movie in movies" ng-show="movie.available">
+      <!--<li ng-repeat="movie in movies | orderBy: order | filter: search" ng-show="movie.available">-->
+      <img ng-src="{{movie.image}}" style="margin: -12px 10px 0 0; float: left; width: 50px;"
+        ng-show="movie.image"/>
+      <h3>{{movie.name}} - {{movie.duration | currency:'min'}}</h3>
+      <div class="remove" ng-click="removeMovie(movie)">x</div>
+      <span>{{movie.category}}</span>
+    </li>
+  </ul>
+
+  <form ng-submit="addMovie()">
+    <input type="text" placeholder="name" ng-model="newMovie.name" />
+    <input type="text" placeholder="category" ng-model="newMovie.category" />
+    <input type="text" placeholder="director" ng-model="newMovie.director" />
+    <input type="text" placeholder="duration" ng-model="newMovie.duration" />
+    <input type="text" placeholder="premiere" ng-model="newMovie.premiere" />
+    <input type="submit" value="Add new movie" />
+  </form>
+</div>
