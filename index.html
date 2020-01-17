@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="myMoviesApp">
+  <head>
+    <title>Binoovo Movies list</title>
+    <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+    <script src="app\lib\angular.min.js"></script>
+    <script src="app\app.js"></script>
+  </head>
+  <body>
+    <header ng-include src="'header.html'"></header>
+
+    <div class="content">
+      <div ng-controller="MoviesController">
+        <button ng-click="order = 'name' ">Order by name</button>
+        <button ng-click="order = 'category' ">Order by category</button>
+        <input type="text" ng-model="search" placeholder="Busca una película"/>
+        <ul>
+          <li ng-repeat="movie in movies | orderBy: order | filter: search" ng-show="movie.available">
+            <h3>{{movie.name}} - {{movie.duration | currency:'min'}}</h3>
+            <div class="remove" ng-click="removeMovie(movie)">x</div>
+            <span>{{movie.category}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
